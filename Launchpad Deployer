@@ -1,0 +1,23 @@
+// File: launchpadDeployer.js
+
+import fs from 'fs';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
+import { deployToIPFS } from './utils/deployToIPFS.js';
+import { saveLaunchpadRecord } from './store/database.js';
+
+export async function deployLaunchpad(config) {
+  const uid = uuidv4();
+  const dir = path.join('/tmp/launchpads', uid);
+
+  fs.mkdirSync(dir, { recursive: true });
+  const html = fs.readFileSync('./template/launchpad.html', 'utf-8');
+  const js = `window.launchpadConfig = ${JSON.stringify(config)};\n` + fs.readFileSync('./template/config.js', 'utf-8');
+
+  fs.writeFileSync(path.join(dir, 'index.html'), html);
+  fs.writeFileSync(path.join(dir, 'config.js'), js);
+
+  const url = await deployToIPFS(dir);
+  await saveLaunchpadRecord({ uid, url, config });
+  return { uid, url };
+}
