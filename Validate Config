@@ -1,0 +1,15 @@
+// File: middleware/validateConfig.js
+
+export function validateConfig(config) {
+  const requiredFields = ["name", "tokenName", "tokenSymbol", "mintPrice"];
+
+  for (let field of requiredFields) {
+    if (!config[field]) throw new Error(`Missing field: ${field}`);
+  }
+
+  if (typeof config.mintPrice !== 'number' || config.mintPrice <= 0) {
+    throw new Error('Invalid mintPrice');
+  }
+
+  return true;
+}
