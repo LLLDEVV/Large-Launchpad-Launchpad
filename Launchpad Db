@@ -1,0 +1,12 @@
+// File: store/database.js
+
+const launchpads = [];
+
+export async function saveLaunchpadRecord(record) {
+  launchpads.push(record);
+  return true;
+}
+
+export async function getAllLaunchpads() {
+  return launchpads;
+}
