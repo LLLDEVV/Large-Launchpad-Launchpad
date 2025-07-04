@@ -1,0 +1,8 @@
+// File: admin/launchpadList.js
+
+import { getAllLaunchpads } from '../store/database.js';
+
+export async function listLaunchpads(req, res) {
+  const launchpads = await getAllLaunchpads();
+  res.json(launchpads);
+}
