@@ -1,0 +1,11 @@
+// File: template/config.js
+
+window.launchpadConfig = window.launchpadConfig || {
+  name: "Default Launchpad",
+  tokenName: "Token",
+  tokenSymbol: "TKN",
+  decimals: 9,
+  mintPrice: 0.01,
+  network: "solana",
+  walletProvider: "https://phantom.app"
+};
