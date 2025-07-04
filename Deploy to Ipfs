@@ -1,0 +1,8 @@
+// File: utils/deployToIPFS.js
+
+// This is a stub. In production, use services like Pinata, nft.storage or a custom IPFS node
+
+export async function deployToIPFS(directoryPath) {
+  const fakeUrl = `https://launches.hyperlaunch.zone/ipfs/${Math.random().toString(36).substring(2, 10)}`;
+  return fakeUrl;
+}
